@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyChef</string>
     <string name="detail_button"> Pokaż przepis </string>
+    <string name="logo_description"> My Chef</string>
 </resources>
