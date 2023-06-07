@@ -33,7 +33,7 @@ import com.example.mychef.data.DataProvider
 
 
 @Composable
-fun RecipeList(category: String?, navController: NavController) {
+fun RecipeList(category: String?) {
     val scrollState = rememberLazyListState()
     LazyColumn(state = scrollState) {
         val recipies = DataProvider.getRecipiesByCategory(category.toString())
@@ -46,7 +46,7 @@ fun RecipeList(category: String?, navController: NavController) {
                         painter = recipe.image,
                         contentDescription = recipe.name,
                         title = recipe.name,
-                        navController = navController,
+                        //navController = navController,
                         modifier = Modifier
                             .weight(1f)
                             .padding(16.dp)
@@ -64,7 +64,7 @@ fun RecipeList(category: String?, navController: NavController) {
 
 @Composable
 fun ImageCard(
-    navController: NavController,
+    //navController: NavController,
     painter: Int,
     contentDescription: String,
     title: String,
@@ -72,10 +72,10 @@ fun ImageCard(
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .clickable(onClick = {
-                navController.navigate(Screen.DetailRecipe.withArgs(title))
-            }),
+            .fillMaxWidth(),
+            //.clickable(onClick = {
+                //navController.navigate(Screen.DetailRecipe.withArgs(title))
+            //}),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
