@@ -1,0 +1,31 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoryListFragment">
+
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="com.example.mychef.CategoryListFragment"
+        android:label="CategoryListFragment" />
+
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="com.example.mychef.RecipeListFragment"
+        android:label="RecipeListFragment" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_recipeListFragment_to_detailRecipeFragment"
+            app:destination="@id/detailRecipeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailRecipeFragment"
+        android:name="com.example.mychef.DetailRecipeFragment"
+        android:label="DetailRecipeFragment" >
+        <argument
+            android:name="recipe"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -27,8 +27,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import com.example.mychef.Screen
+import com.example.mychef.R
 import com.example.mychef.data.DataProvider
 
 
@@ -40,8 +41,7 @@ fun RecipeList(category: String?, navController: NavController) {
         val rows = recipies.chunked(2)
         items(rows) { row ->
             Row(Modifier.fillMaxWidth()) {
-              row.forEach {
-                  recipe ->
+                row.forEach { recipe ->
                     ImageCard(
                         painter = recipe.image,
                         contentDescription = recipe.name,
@@ -50,8 +50,8 @@ fun RecipeList(category: String?, navController: NavController) {
                         modifier = Modifier
                             .weight(1f)
                             .padding(16.dp)
-                  )
-              }
+                    )
+                }
                 if (row.size == 1) {
                     Spacer(Modifier.weight(1f))
                 }
@@ -74,7 +74,7 @@ fun ImageCard(
         modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = {
-                navController.navigate(Screen.DetailRecipe.withArgs(title))
+                navController.navigate(R.id.detailRecipeFragment, bundleOf("recipe" to title))
             }),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(

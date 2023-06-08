@@ -16,8 +16,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import com.example.mychef.Screen
+import com.example.mychef.R
 import com.example.mychef.model.Category
 
 
@@ -35,7 +36,7 @@ fun CategoryList(navController: NavController) {
                     .padding(10.dp)
                     .fillMaxWidth()
                     .clickable(onClick = {
-                        navController.navigate(Screen.RecipeList.withArgs(category))
+                        navController.navigate(R.id.recipeListFragment, bundleOf("category" to category))
                     })
             ) {
                 Text(
