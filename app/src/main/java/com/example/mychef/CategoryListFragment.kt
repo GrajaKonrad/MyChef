@@ -8,6 +8,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mychef.view.CategoryList
+import selectedRecipe
 
 class CategoryListFragment : Fragment() {
 
@@ -16,6 +17,7 @@ class CategoryListFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        selectedRecipe.value = null
         val navController = findNavController()
         val view = ComposeView(requireContext())
         view.apply {

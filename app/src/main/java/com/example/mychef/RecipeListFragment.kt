@@ -1,10 +1,12 @@
 package com.example.mychef
 
+import RecipeScreen
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.booleanResource
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mychef.view.RecipeList
@@ -21,7 +23,11 @@ class RecipeListFragment : Fragment() {
         val navController = findNavController()
         view.apply {
             setContent {
-                RecipeList(category = category, navController)
+                if (booleanResource(id = R.bool.is_tablet)) {
+                    RecipeScreen(category = category, navController)
+                } else {
+                    RecipeList(category = category, navController = navController)
+                }
             }
         }
         return view

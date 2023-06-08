@@ -36,7 +36,10 @@ fun CategoryList(navController: NavController) {
                     .padding(10.dp)
                     .fillMaxWidth()
                     .clickable(onClick = {
-                        navController.navigate(R.id.recipeListFragment, bundleOf("category" to category))
+                        navController.navigate(
+                            R.id.recipeListFragment,
+                            bundleOf("category" to category)
+                        )
                     })
             ) {
                 Text(
