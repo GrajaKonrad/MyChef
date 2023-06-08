@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mychef.data.DataProvider
 import com.example.mychef.view.DetailRecipe
-import com.example.mychef.view.RecipeList
 
 var selectedRecipe: MutableState<String?> = mutableStateOf(null)
 
@@ -41,7 +40,7 @@ fun RecipeScreen(category: String?, navController: NavController) {
 
     Row(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.weight(1f)) {
-            RecipeList(category = category, navController = navController)
+            RecipeList(category = category)
         }
 
         Column(modifier = Modifier.weight(1f)) {
