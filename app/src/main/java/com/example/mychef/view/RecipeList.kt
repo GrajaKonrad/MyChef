@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -31,36 +34,57 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import com.example.mychef.R
 import com.example.mychef.data.DataProvider
+import com.example.mychef.model.Category
+
+private val categoryList: List<String> = Category.values().map { it.displatName }
 
 
 @Composable
 fun RecipeList(category: String?, navController: NavController) {
     val scrollState = rememberLazyListState()
-    LazyColumn(state = scrollState) {
-        val recipies = DataProvider.getRecipiesByCategory(category.toString())
-        val rows = recipies.chunked(2)
-        items(rows) { row ->
-            Row(Modifier.fillMaxWidth()) {
-                row.forEach { recipe ->
-                    ImageCard(
-                        painter = recipe.image,
-                        contentDescription = recipe.name,
-                        title = recipe.name,
-                        navController = navController,
-                        modifier = Modifier
-                            .weight(1f)
-                            .padding(16.dp)
-                    )
+    val tabs = getTabList()
+    Column(Modifier.fillMaxSize()) {
+        val selectedTabIndexState = remember { mutableStateOf(0) }
+        val selectedTabIndex = selectedTabIndexState.value
+
+        CustomScrollableTabRow(
+            tabs = tabs,
+            selectedTabIndex = selectedTabIndex,
+        ) { tabIndex ->
+            selectedTabIndexState.value = tabIndex
+        }
+        val selectedCategory = tabs.getOrNull(selectedTabIndex)
+        val recipes = DataProvider.getRecipiesByCategory(selectedCategory.toString())
+
+        if (selectedCategory == "Home") {
+            Text(text = "Karta główna będzie informować o  przeznaczeniu aplikacji")
+        } else {
+            LazyColumn(state = scrollState) {
+                val rows = recipes.chunked(2)
+                items(rows) { row ->
+                    Row(Modifier.fillMaxWidth()) {
+                        row.forEach { recipe ->
+                            ImageCard(
+                                painter = recipe.image,
+                                contentDescription = recipe.name,
+                                title = recipe.name,
+                                navController = navController,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(16.dp)
+                            )
+                        }
+                        if (row.size == 1) {
+                            Spacer(Modifier.weight(1f))
+                        }
+                    }
                 }
-                if (row.size == 1) {
-                    Spacer(Modifier.weight(1f))
-                }
+
             }
         }
-
     }
-
 }
+
 
 @Composable
 fun ImageCard(
@@ -112,4 +136,7 @@ fun ImageCard(
     }
 }
 
+private fun getTabList(): List<String> {
+    return listOf("Home") + categoryList
+}
 
