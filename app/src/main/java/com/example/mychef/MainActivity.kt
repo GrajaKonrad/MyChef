@@ -12,14 +12,17 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment?
-            ?: NavHostFragment.create(R.navigation.nav_graph)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment?
+                ?: NavHostFragment.create(R.navigation.nav_graph)
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, navHostFragment)
-                .setPrimaryNavigationFragment(navHostFragment)
-                .commit()
-    }
+            .replace(R.id.main_container, navHostFragment)
+            .setPrimaryNavigationFragment(navHostFragment)
+            .commit()
 
+
+    }
 }
+
 

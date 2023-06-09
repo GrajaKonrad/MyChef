@@ -40,7 +40,7 @@ private val categoryList: List<String> = Category.values().map { it.displatName 
 
 
 @Composable
-fun RecipeList(category: String?, navController: NavController) {
+fun RecipeList(navController: NavController) {
     val scrollState = rememberLazyListState()
     val tabs = getTabList()
     Column(Modifier.fillMaxSize()) {
@@ -64,7 +64,7 @@ fun RecipeList(category: String?, navController: NavController) {
                 items(rows) { row ->
                     Row(Modifier.fillMaxWidth()) {
                         row.forEach { recipe ->
-                            ImageCard(
+                            ImageCardForPhone(
                                 painter = recipe.image,
                                 contentDescription = recipe.name,
                                 title = recipe.name,
@@ -87,7 +87,7 @@ fun RecipeList(category: String?, navController: NavController) {
 
 
 @Composable
-fun ImageCard(
+fun ImageCardForPhone(
     navController: NavController,
     painter: Int,
     contentDescription: String,
@@ -136,7 +136,7 @@ fun ImageCard(
     }
 }
 
-private fun getTabList(): List<String> {
+fun getTabList(): List<String> {
     return listOf("Home") + categoryList
 }
 

@@ -18,15 +18,14 @@ class RecipeListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val category = arguments?.getString("category")
         val view = ComposeView(requireContext())
         val navController = findNavController()
         view.apply {
             setContent {
                 if (booleanResource(id = R.bool.is_tablet)) {
-                    RecipeScreen(category = category, navController)
+                    RecipeScreen(requireContext())
                 } else {
-                    RecipeList(category = category, navController = navController)
+                    RecipeList(navController = navController)
                 }
             }
         }
