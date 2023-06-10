@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import com.example.mychef.NavMenu
 import com.example.mychef.R
 import com.example.mychef.data.DataProvider
 import com.example.mychef.model.Category
@@ -46,6 +47,8 @@ fun RecipeList(navController: NavController) {
     Column(Modifier.fillMaxSize()) {
         val selectedTabIndexState = remember { mutableStateOf(0) }
         val selectedTabIndex = selectedTabIndexState.value
+
+        NavMenu()
 
         CustomScrollableTabRow(
             tabs = tabs,
