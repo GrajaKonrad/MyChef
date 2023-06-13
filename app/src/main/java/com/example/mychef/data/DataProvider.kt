@@ -8,26 +8,85 @@ object DataProvider {
 
     val recipies = listOf(
         Recipe(
-            Category.ITALIAN.displatName, "Spaghetti", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.spaghetti),
-        Recipe(Category.DESSERT.displatName, "Naleśniki", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.nalesniki),
-        Recipe(Category.ITALIAN.displatName, "Lasagne", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.lasagne),
-        Recipe(Category.DESSERT.displatName, "Sernik", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.sernik),
-        Recipe(Category.DESSERT.displatName, "Pączki", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.paczki),
-        Recipe(Category.APPETIZER.displatName, "Rosół", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.rosol),
-        Recipe(Category.TURKISH.displatName, "Kebab", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.kebab),
-        Recipe(Category.SALAD.displatName, "Sałatka", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.salatka),
-        Recipe(Category.POLISH.displatName, "Zapiekanka", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.zapiekanka),
-        Recipe(Category.POLISH.displatName, "Pieczeń", listOf(
-            "mąka", "jaja"), listOf("przygotować", "pokroic", "ugotowac"), R.drawable.pieczen)
+            Category.ITALIAN.displatName,
+            "Spaghetti",
+            listOf("mąka", "jaja", "pomidor"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.spaghetti,
+            listOf(61000,180000, 30000)
+        ),
+        Recipe(
+            Category.DESSERT.displatName,
+            "Naleśniki",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.nalesniki,
+            listOf(685000,90000)
+        ),
+        Recipe(
+            Category.ITALIAN.displatName,
+            "Lasagne",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.lasagne,
+            listOf(61000,90000)
+        ),
+        Recipe(
+            Category.DESSERT.displatName,
+            "Sernik",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.sernik,
+            listOf(70000,90000)
+        ),
+        Recipe(
+            Category.DESSERT.displatName,
+            "Pączki",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.paczki,
+            listOf(61000,90000)
+        ),
+        Recipe(
+            Category.APPETIZER.displatName,
+            "Rosół",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.rosol,
+            listOf(61000,90000)
+        ),
+        Recipe(
+            Category.TURKISH.displatName,
+            "Kebab",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "nawinąć"),
+            R.drawable.kebab,
+            listOf(63000,90000)
+        ),
+        Recipe(
+            Category.SALAD.displatName,
+            "Sałatka",
+            listOf("sałata", "jaja"),
+            listOf("przygotować", "pokroic"),
+            R.drawable.salatka,
+            listOf(61000,81000)
+        ),
+        Recipe(
+            Category.POLISH.displatName,
+            "Zapiekanka",
+            listOf("mąka", "jaja"),
+            listOf("przygotować", "pokroic", "ugotowac"),
+            R.drawable.zapiekanka,
+            listOf(61000,900000)
+        ),
+        Recipe(
+            Category.POLISH.displatName,
+            "Pieczeń",
+            listOf("mięso", "przyprawy"),
+            listOf("przygotować", "usmażyć", "zapiec"),
+            R.drawable.pieczen,
+            listOf(61000,3600000)
+        )
     )
 
     fun getRecipiesByCategory(category: String): List<Recipe> {

@@ -112,7 +112,8 @@ fun ImageCardForPhone(
             Image(
                 painter = painterResource(painter),
                 contentDescription = contentDescription,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
             )
             Box(
                 modifier = Modifier
