@@ -8,9 +8,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
@@ -22,8 +26,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-
+import androidx.compose.ui.window.PopupProperties
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
 import com.example.mychef.R
+import com.example.mychef.data.DataProvider
+import com.example.mychef.model.Recipe
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,9 +39,13 @@ import com.example.mychef.R
     name = "Titlebar Preview"
 )
 @Composable
-fun NavMenu() {
+fun NavMenu(
+    navController: NavController
+    ) {
     var search_clicked by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     var text by remember { mutableStateOf(TextFieldValue("")) }
+    var recipes by remember { mutableStateOf(listOf<Recipe>())}
     TopAppBar(
         title = {
             if(!search_clicked)
@@ -70,11 +82,34 @@ fun NavMenu() {
             {
                 TextField(
                     value = text,
-                    onValueChange = {newText -> text = newText},
+                    shape = RoundedCornerShape(15.dp),
+                    onValueChange = {
+                            newText -> text = newText
+                            recipes = DataProvider.getRecipeByPartName(text.text)
+                            expanded = true
+                                    },
                     modifier = Modifier
-                                    .padding(25.dp)
-                                    .widthIn(0.dp, 230.dp)
+                        .padding(30.dp)
+                        .widthIn(0.dp, 230.dp)
+                        .size(width = 230.dp, height = 40.dp)
                 )
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                    properties = PopupProperties(focusable = false)
+                ) {
+                    recipes.forEach { row ->
+                        DropdownMenuItem(
+                            text = { Text(row.name) },
+                            onClick = {
+                                navController.navigate(
+                                    R.id.detailRecipeFragment,
+                                    bundleOf("recipe" to row.name)
+                                )
+                            }
+                        )
+                    }
+                }
             }
         },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -95,4 +130,3 @@ fun NavMenu() {
             }
     )
 }
-

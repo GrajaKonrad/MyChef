@@ -99,4 +99,10 @@ object DataProvider {
             name.equals(recipe.name)
         }.first()
     }
+
+    fun getRecipeByPartName(part: String): List<Recipe> {
+        return recipies.filter { recipe ->
+            recipe.name.contains(part)
+        }
+    }
 }

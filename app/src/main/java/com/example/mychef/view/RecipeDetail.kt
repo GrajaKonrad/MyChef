@@ -105,47 +105,46 @@ fun Timer(
     Row(
         verticalAlignment = Alignment.CenterVertically
     ){
-
-    Button(
-        onClick = {
-                    if(currentTime <= 0L) {
-                        currentTime = timeBegin
-                        isTimerStart = true
-                    } else {
-                        isTimerStart = !isTimerStart
-                    }
-                  },
-        modifier = Modifier
-                        .padding(5.dp)
-                        .size(width = 25.dp, height = 25.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = if (!isTimerStart || currentTime <= 0L) {
-                Color.Green
-            } else {
-                Color.Red
-            }
-        ),
-        shape = RoundedCornerShape(28.dp),
-        contentPadding = PaddingValues(5.dp)
-    ) {
-        Icon(
-            if(!isTimerStart || currentTime <= 0L)
-            {
-                Icons.Rounded.PlayArrow
-            } else
-            {
-                Icons.Rounded.Done
-            },
-            modifier = Modifier.size(20.dp),
-            contentDescription = "time icon",
-            tint = Color.Unspecified
+        Button(
+            onClick = {
+                        if(currentTime <= 0L) {
+                            currentTime = timeBegin
+                            isTimerStart = true
+                        } else {
+                            isTimerStart = !isTimerStart
+                        }
+                      },
+            modifier = Modifier
+                            .padding(5.dp)
+                            .size(width = 25.dp, height = 25.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = if (!isTimerStart || currentTime <= 0L) {
+                    Color.Green
+                } else {
+                    Color.Red
+                }
+            ),
+            shape = RoundedCornerShape(28.dp),
+            contentPadding = PaddingValues(5.dp)
+        ) {
+            Icon(
+                if(!isTimerStart || currentTime <= 0L)
+                {
+                    Icons.Rounded.PlayArrow
+                } else
+                {
+                    Icons.Rounded.Done
+                },
+                modifier = Modifier.size(20.dp),
+                contentDescription = "time icon",
+                tint = Color.Unspecified
+            )
+        }
+        Text(
+            text = (currentTime / 60000L).toString() + "min " + ((currentTime % 60000L) / 1000).toString() + "sec",
+            modifier = Modifier.padding(start = 2.dp),
+            fontSize = 14.sp,
+            color = Color.Black
         )
-    }
-    Text(
-        text = (currentTime / 60000L).toString() + "min " + ((currentTime % 60000L) / 1000).toString() + "sec",
-        modifier = Modifier.padding(start = 2.dp),
-        fontSize = 14.sp,
-        color = Color.Black
-    )
     }
 }
