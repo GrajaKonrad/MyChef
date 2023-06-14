@@ -48,7 +48,7 @@ fun RecipeList(navController: NavController) {
         val selectedTabIndexState = remember { mutableStateOf(0) }
         val selectedTabIndex = selectedTabIndexState.value
 
-        NavMenu()
+        NavMenu(navController)
 
         CustomScrollableTabRow(
             tabs = tabs,
